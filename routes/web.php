@@ -16,3 +16,7 @@ Route::get('/create', 'PagesController@create');
 Route::get('/show', 'PagesController@show');
 
 Route::resource('projects', 'ProjectsController');
+
+// Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

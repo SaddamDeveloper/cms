@@ -58,7 +58,7 @@
     <!-- Column -->
     <div class="col-lg-4 col-md-4">
         <div class="card">
-            <img class="" src="../assets/images/background/weatherbg.jpg" alt="Card image cap">
+            <img class="" src="{{asset('material-pro/assets/images/background/weatherbg.jpg')}}" alt="Card image cap">
             <div class="card-img-overlay" style="height:110px;">
                 <h3 class="card-title text-white m-b-0 dl">New Delhi</h3>
                 <small class="card-text text-white font-light">Sunday 15 march</small>
