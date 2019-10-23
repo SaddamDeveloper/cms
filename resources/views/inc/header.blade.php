@@ -9,8 +9,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon.png">
-    <title>{{config('app.name')}}</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="{{asset('material-pro/assets/images/favicon.png')}}">
+    <title>{{config('app.config', 'CMS')}}</title>
     <!-- Bootstrap Core CSS -->
     <link href="{{asset('material-pro/assets/plugins/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
     <!-- chartist CSS -->
@@ -22,7 +22,8 @@
     <!-- Custom CSS -->
     <link href="{{asset('material-pro/minisidebar/css/style.css')}}" rel="stylesheet">
     <!-- You can change the theme colors from here -->
-    <link href="{{asset('material-pro/minisidebar/css/colors/default-dark.css')}}" id="theme" rel="stylesheet">
+    <link href="{{asset('material-pro/minisidebar/css/colors/default-dark.css')}}" rel="stylesheet">
+    <link href="{{asset('material-pro/minisidebar/css/bootstrap-datepicker.min.css')}}"  rel="stylesheet">
     @stack('styles')
 </head>
 

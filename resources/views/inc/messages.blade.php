@@ -1,3 +1,4 @@
+@if(Auth::check())
 @if (count($errors) > 0)
     @foreach ($errors->all() as $error)
         <div class="alert alert-danger">
@@ -16,4 +17,5 @@
         <div class="alert alert-danger">
             {{session('error')}}
         </div>
+@endif
 @endif

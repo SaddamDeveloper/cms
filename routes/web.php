@@ -11,12 +11,17 @@
 |
 */
 
-Route::get('/', 'PagesController@index');
-Route::get('/create', 'PagesController@create');
-Route::get('/show', 'PagesController@show');
 
-Route::resource('projects', 'ProjectsController');
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/', 'PagesController@index');
+    Route::get('/create', 'PagesController@create');
+    Route::get('/show', 'PagesController@show');
+    Route::get('/profile', 'PagesController@profile');
+    Route::get('/pages/newdiv', 'PagesController@newDiv');
 
-// Auth::routes();
+    Route::resource('projects', 'ProjectsController');
 
-Route::get('/home', 'HomeController@index')->name('home');
+
+    Route::get('/', 'DashboardController@index');
+});
+Auth::routes();

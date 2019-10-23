@@ -14,8 +14,16 @@ class PagesController extends Controller
         return view('pages.create');
     }
 
+    public function profile(){
+        return view('pages.profile');
+    }
+
     public function show(){
         $projects = Project::orderBy('created_at', 'desc')->paginate(10);
         return view('pages.show')->with('projects', $projects);
+    }
+
+    public function newDiv(){
+        return 1;
     }
 }
