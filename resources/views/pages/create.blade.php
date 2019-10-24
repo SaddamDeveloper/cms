@@ -25,7 +25,7 @@
                                         <div class="col-md-9">
                                             {{ Form::text('title', '', ['class' =>   'form-control'])}}
                                             <span class="bar"></span>
-                                            <label for="input3">Project Name</label>
+                                            <label for="title">Project Name</label>
                                             <small class="form-control-feedback"> This is inline help </small>
                                         </div>
                                     </div>
@@ -35,9 +35,8 @@
                                         <label class="control-label text-right col-md-3">Delivery date</label>
                                         <div class="col-md-9">
                                             {{ Form::date('deliverydate', \Carbon\Carbon::now(), ['class' =>   'form-control'])}}
+                                            <span class="bar"></span>
                                         </div>
-                                        <label class="m-t-20">Default Material Date Picker</label>
-                                        <input type="text" class="form-control" placeholder="2017-06-04" id="mdate" data-dtp="dtp_BHIq8">
                                     </div>
                                 </div>
                             </div>
@@ -54,49 +53,11 @@
                                 <div class="col-md-6">
                                     <div class="form-group row">
                                         <div class="col-md-9">
-                                            {{ Form::select('paymentmethod', ['0' => '', '1' => 'Cash', '2' => 'Cheque', '3' => 'RTGS/NEFT'], '', ['class' => 'form-control', 'id' => 'paymentmethod', 'onchange' => 'this.form.submit()']) }}
+                                            {{ Form::select('paymentmethod', ['0' => '', '1' => 'Cash', '2' => 'Cheque', '3' => 'RTGS/NEFT'], '', ['class' => 'form-control', 'id' => 'paymentmethod']) }}
                                             <span class="bar"></span>
                                             <label for="input6">Payment Method</label>
                                             <small class="form-control-feedback"> This is inline help </small>
-                                            <div id="div0" class="box">
-                                                <div class="card">
-                                                    <div class="card-body">
-                                                        <h4 class="card-title">Cash</h4>
-                                                        <form>
-                                                            <div class="form-group">
-                                                                <input type="text" class="form-control" id="exampleInputname2" placeholder="Enter Name"> </div>
-                                                            <div class="form-group">
-                                                                <input type="email" class="form-control" placeholder="Enter email"> </div>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div id="div1" class="box">
-                                                <div class="card">
-                                                    <div class="card-body">
-                                                        <h4 class="card-title">Cheque</h4>
-                                                        <form>
-                                                            <div class="form-group">
-                                                                <input type="text" class="form-control" id="exampleInputname2" placeholder="Enter Name"> </div>
-                                                            <div class="form-group">
-                                                                <input type="email" class="form-control" placeholder="Enter email"> </div>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div id="div2" class="box">
-                                                <div class="card">
-                                                    <div class="card-body">
-                                                        <h4 class="card-title">RTGS/NEFT</h4>
-                                                        <form>
-                                                            <div class="form-group">
-                                                                <input type="text" class="form-control" id="exampleInputname2" placeholder="Enter Name"> </div>
-                                                            <div class="form-group">
-                                                                <input type="email" class="form-control" placeholder="Enter email"> </div>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
+
                                         </div>
                                     </div>
                                 </div>
@@ -109,6 +70,25 @@
                                             <span class="bar"></span>
                                             <label for="input6">Client Type</label>
                                             <small class="form-control-feedback"> This is inline help </small> </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                         <div style="display:none;" class="cash">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <h4 class="card-title">Cash</h4>
+                                                        <div class="form-group">
+                                                            {{ Form::text('pamount', '', ['class' =>   'form-control', 'id' => 'pamount'])}}
+                                                            <span class="bar"></span>
+                                                            <label for="input3">Payable Amount</label>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            {{ Form::label('dueamount', 'Due Amount: ', ['class' =>   'form-control', 'id' => 'dueamount'])}}
+                                                        </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -160,10 +140,17 @@
 <script src="{{asset('material-pro/assets/plugins/styleswitcher/jQuery.style.switcher.js')}}"></script>
 <script>
 $(document).ready(function(){
-    $('.box').hide();
-    $('#paymentmethod').change(function() {
-        $('.box').hide();
-        $('#div' + $(this).val()).show();
+    $('#paymentmethod').on('change', function() {
+      if ( this.value == '1')
+      {
+        $(".cash").show();
+        $("#clientname").show();
+        $("#email").show();
+      }
+      else
+      {
+        $(".cash").hide();
+      }
     });
 });
 </script>
