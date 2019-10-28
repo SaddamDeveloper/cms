@@ -38,10 +38,10 @@ class ProjectsController extends Controller
     {
         $this->validate($request, [
             'title' => 'required',
-            'amount'    =>  'required',
-            'clienttype'    => 'required',
+            'amount'    =>  'required|numeric',
+            'clienttype'    => 'required|not_in:0',
             'deliverydate'  =>  'required',
-            'paymentmethod' =>  'required'
+            'paymentmethod' =>  'required||not_in:0'
         ]);
 
         $project = new Project;

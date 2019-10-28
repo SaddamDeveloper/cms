@@ -15,7 +15,7 @@
                 <h4 class="m-b-0 text-white">Create Project</h4>
             </div>
             <div class="card-body">
-                {!! Form::open(['action' => 'ProjectsController@store', 'method'    =>  'POST', 'class' =>  'floating-labels m-t-40']) !!}
+                {!! Form::open(['action' => 'ProjectsController@store', 'method'    =>  'POST']) !!}
                     <div class="form-body">
                         <h3 class="box-title">Project Info</h3>
                         <hr class="m-t-0 m-b-40">
@@ -23,19 +23,16 @@
                                 <div class="col-md-6">
                                     <div class="form-group row">
                                         <div class="col-md-9">
+                                            {{Form::label('title', 'Project name')}}
                                             {{ Form::text('title', '', ['class' =>   'form-control'])}}
-                                            <span class="bar"></span>
-                                            <label for="title">Project Name</label>
                                             <small class="form-control-feedback"> This is inline help </small>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group row">
-                                        <label class="control-label text-right col-md-3">Delivery date</label>
                                         <div class="col-md-9">
                                             {{ Form::date('deliverydate', \Carbon\Carbon::now(), ['class' =>   'form-control'])}}
-                                            <span class="bar"></span>
                                         </div>
                                     </div>
                                 </div>
@@ -44,20 +41,16 @@
                                 <div class="col-md-6">
                                     <div class="form-group row">
                                         <div class="col-md-9">
+                                            {{Form::label('amount', 'Amount')}}
                                             {{ Form::text('amount', '', ['class' =>   'form-control'])}}
-                                            <span class="bar"></span>
-                                            <label for="input3">Project Amount</label>
                                             <small class="form-control-feedback"> This is inline help </small> </div>
                                         </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group row">
                                         <div class="col-md-9">
-                                            {{ Form::select('paymentmethod', ['0' => '', '1' => 'Cash', '2' => 'Cheque', '3' => 'RTGS/NEFT'], '', ['class' => 'form-control', 'id' => 'paymentmethod']) }}
-                                            <span class="bar"></span>
-                                            <label for="input6">Payment Method</label>
+                                            {{ Form::select('paymentmethod', ['0' => '-SELECT Payment Methhod-', '1' => 'Cash', '2' => 'Cheque', '3' => 'RTGS/NEFT'], '', ['class' => 'form-control', 'id' => 'paymentmethod']) }}
                                             <small class="form-control-feedback"> This is inline help </small>
-
                                         </div>
                                     </div>
                                 </div>
@@ -66,30 +59,82 @@
                                 <div class="col-md-6">
                                     <div class="form-group row">
                                         <div class="col-md-9">
-                                            {{ Form::select('clienttype', [ '0' => '', '1' => 'Individual', '2' => 'Govt', '3' => 'Pvt Ltd.', '4' =>  'NGO'], '', ['class' => 'form-control']) }}
-                                            <span class="bar"></span>
-                                            <label for="input6">Client Type</label>
-                                            <small class="form-control-feedback"> This is inline help </small> </div>
+                                            {{ Form::select('clienttype', [ '0' => '-SELECT Client Type-', '1' => 'Individual', '2' => 'Govt', '3' => 'Pvt Ltd.', '4' =>  'NGO'], '', ['class' => 'form-control', 'id'  =>  'clienttype']) }}
+                                            <small class="form-control-feedback"> This is inline help </small>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                            <div style="display:none;" class="individual">
+                                                <div class="form-group">
+                                                    {{ Form::text('clientName', '', ['class' =>   'form-control', 'id' => 'cname', 'placeholder' => 'Client Name'])}}
+                                                </div>
+                                                <div class="form-group">
+                                                    {{ Form::text('contactNo', '', ['class' =>   'form-control', 'id' => 'contactNo', 'placeholder' => 'Contact No'])}}
+                                                </div>
+                                                <div class="form-group">
+                                                    {{ Form::text('altContactNo', '', ['class' =>   'form-control', 'id' => 'altContactNo', 'placeholder' => 'Alternate Contact No'])}}
+                                                </div>
+                                                <div class="form-group">
+                                                    {{ Form::email('email', '', ['class' =>   'form-control', 'id' => 'email', 'placeholder' => 'Email'])}}
+                                                </div>
+                                                <div class="form-group">
+                                                    <textarea name="address" id="address" class="form-control" placeholder="Address" cols="15" rows="10"></textarea>
+                                                </div>
+                                            </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group row">
                                          <div style="display:none;" class="cash">
-                                            <div class="card">
-                                                <div class="card-body">
-                                                    <h4 class="card-title">Cash</h4>
-                                                        <div class="form-group">
-                                                            {{ Form::text('pamount', '', ['class' =>   'form-control', 'id' => 'pamount'])}}
-                                                            <span class="bar"></span>
-                                                            <label for="input3">Payable Amount</label>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            {{ Form::label('dueamount', 'Due Amount: ', ['class' =>   'form-control', 'id' => 'dueamount'])}}
-                                                        </div>
+                                                <div class="form-group">
+                                                    {{ Form::text('pamount', '', ['class' =>   'form-control', 'id' => 'pamount', 'placeholder' => 'Payable Amount'])}}
+                                                </div>
+                                                <div class="form-group">
+                                                    {{ Form::label('dueamount', 'Due Amount: ', ['class' =>   'form-control', 'id' => 'dueamount'])}}
+                                                </div>
+                                                <div class="form-group">
+                                                    {{ Form::label('paidamount', 'Paid Amount: ', ['class' =>   'form-control', 'id' => 'paidamount'])}}
+                                                </div>
+                                            </div>
+                                            <div style="display:none;" class="cheque">
+                                                <div class="form-group">
+                                                    {{ Form::text('pamount', '', ['class' =>   'form-control', 'id' => 'pamount', 'placeholder' => 'Payable Amount'])}}
+                                                </div>
+                                                <div class="form-group">
+                                                    {{ Form::label('dueamount', 'Due Amount: ', ['class' =>   'form-control', 'id' => 'dueamount'])}}
+                                                </div>
+                                                <div class="form-group">
+                                                    {{ Form::text('chequeno', '', ['class' =>   'form-control', 'id' => 'chequeno', 'placeholder' => 'Cheque No'])}}
+                                                </div>
+                                                <div class="form-group">
+                                                    {{ Form::text('bankname', '', ['class' =>   'form-control', 'id' => 'bankname', 'placeholder' => 'Bank Name'])}}
+                                                </div>
+                                                <div class="form-group">
+                                                    {{ Form::text('phoneno', '', ['class' =>   'form-control', 'id' => 'phoneno', 'placeholder' => 'Phone No'])}}
+                                                </div>
+                                            </div>
+                                            <div style="display:none;" class="rtgs">
+                                                <div class="form-group">
+                                                    {{ Form::text('pamount', '', ['class' =>   'form-control', 'id' => 'pamount', 'placeholder' => 'Payable Amount'])}}
+                                                </div>
+                                                <div class="form-group">
+                                                    {{ Form::label('dueamount', 'Due Amount: ', ['class' =>   'form-control', 'id' => 'dueamount'])}}
+                                                </div>
+                                                <div class="form-group">
+                                                    {{ Form::text('rtgsno', '', ['class' =>   'form-control', 'id' => 'chequeno', 'placeholder' => 'RTGS/NEFT No'])}}
+                                                </div>
+                                                <div class="form-group">
+                                                    {{ Form::text('bankname', '', ['class' =>   'form-control', 'id' => 'bankname', 'placeholder' => 'Bank Name'])}}
+                                                </div>
+                                                <div class="form-group">
+                                                    {{ Form::text('phoneno', '', ['class' =>   'form-control', 'id' => 'phoneno', 'placeholder' => 'Phone No'])}}
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                                <div class="row">
+
                                 </div>
                             </div>
                             <hr>
@@ -144,13 +189,26 @@ $(document).ready(function(){
       if ( this.value == '1')
       {
         $(".cash").show();
-        $("#clientname").show();
-        $("#email").show();
+        $(".cheque").hide();
+        $(".rtgs").hide();
       }
-      else
+      else if( this.value == '2')
       {
+        $(".cheque").show();
         $(".cash").hide();
+        $(".rtgs").hide();
       }
+      else if( this.value == '3')
+      {
+        $(".rtgs").show();
+        $(".cash").hide();
+        $(".cheque").hide();
+      }
+    });
+    $('#clienttype').on('change', function(){
+        if(this.value == 1){
+            $('.individual').show();
+        }
     });
 });
 </script>
