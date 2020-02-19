@@ -119,21 +119,21 @@ class ProjectsController extends Controller
         ]);
 
         $project = ClientType::with('projects')->find($id);
-        return $project;
         $project->projectname = $request->input('title');
         $project->amount = $request->input('amount');
         $project->projecttype = $request->input('clienttype');
         $project->deliverydate = $request->input('deliverydate');
         $project->paymentmethod = $request->input('paymentmethod');
         $project->status = 0;
-        $clienttype = new ClientType;
+        return $project;
+        $clienttype = ClientType::with('projects')->find($id);
         $clienttype->clientName = $request->input('clientName');
         $clienttype->contactNo = $request->input('contactNo');
         $clienttype->altContactNo = $request->input('altContactNo');
         $clienttype->email = $request->input('email');
         $clienttype->address = $request->input('address');
-
-        $cash = new Cash;
+        return $clienttype;
+        $cash = Cash::with('projects')->find($id);
         $cash->payableAmount = $request->input('payableAmount');
 
         $clienttype->save();

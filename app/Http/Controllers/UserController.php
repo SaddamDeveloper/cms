@@ -74,7 +74,23 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::find($id);
+         $this->validate($request, [
+            'name' => 'required',
+            'email'    =>  'required|unique:users',
+            'password'    => 'required',
+            'role' =>  'required|not_in:0'
+        ]);
+        
+        $user = new User;
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->password = Hash::make($request->input('password'));
+        $user->role = $request->input('role');
+
+        $user->save();
+
+         return redirect('/showuser')->with('success', 'User Updated!');
     }
 
     /**

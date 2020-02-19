@@ -29,7 +29,7 @@
                                     <td>{{$user->created_at}}</td>
                                     <td>
                                         <div class="btn-group">
-                                            <a href="/projects/{{$user->id}}/edit" class="btn btn-warning">Edit</a>
+                                            <a href="/user/{{$user->id}}/edit" class="btn btn-warning">Edit</a>
                                             {{Form::submit('Delete', ['class'   =>  'btn btn-danger' ])}}
                                         </div>
                                     </td>
