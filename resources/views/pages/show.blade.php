@@ -18,7 +18,6 @@
                                 <th>Client Name</th>
                                 <th>Contact No</th>
                                 <th>Alt Contact No</th>
-                                <th>Email</th>
                                 <th>Address</th>
                                 <th>Action</th>
                             </tr>
@@ -37,7 +36,6 @@
                                         <td>{{$project->contactNo}}</td>
                                         <td>{{$project->altContactNo}}</td>
                                         <td>{{$project->address}}</td>
-                                        <td>{{$project->email}}</td>
                                         <td>
                                             <div class="btn-group">
                                                 <a href="/projects/{{$project->id}}/edit" class="btn btn-warning">Edit</a>

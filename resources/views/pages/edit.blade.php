@@ -138,7 +138,7 @@
                                 </div>
                             </div>
                             <hr>
-                            <div class="col-md-offset-3 col-md-9 pull-right">
+                            <div class="float-right">
                                 {{Form::hidden('_method', 'PUT')}}
                                 {{Form::submit('Submit', ['class'   =>  'btn btn-success' ])}}
                                 <a href="/" class="btn btn-inverse">Cancel</a>

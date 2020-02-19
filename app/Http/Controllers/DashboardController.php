@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Cash;
+use DB;
 
 class DashboardController extends Controller
 {
@@ -23,7 +25,6 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        
         return view('pages.index');
     }
 }

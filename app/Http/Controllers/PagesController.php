@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Project;
 class PagesController extends Controller
 {
+    /**
+     * @params for Reception
+     */
     public function index(){
         return view('pages.index');
     }
@@ -22,8 +25,23 @@ class PagesController extends Controller
         $projects = Project::orderBy('created_at', 'desc')->paginate(10);
         return view('pages.show')->with('projects', $projects);
     }
+    
+    public function user(){
+        // $projects = Project::orderBy('created_at', 'desc')->paginate(10);
+        return view('pages.user');
+    }
 
-    public function newDiv(){
-        return 1;
+    /**
+     * @params for Admin
+     */
+    public function admin(){
+        return view('pages.admin');
+    }
+
+    /**
+     * @params for Employee
+     */
+    public function employee(){
+        return view('pages.employee');
     }
 }

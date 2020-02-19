@@ -32,6 +32,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group row">
                                         <div class="col-md-9">
+                                            {{Form::label('title', 'Date')}}
                                             {{ Form::date('deliverydate', \Carbon\Carbon::now(), ['class' =>   'form-control'])}}
                                         </div>
                                     </div>
