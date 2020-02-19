@@ -22,7 +22,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/projects', 'PagesController@show')->middleware('reception');
     Route::get('/profile', 'PagesController@profile')->middleware('reception');
     Route::get('/pages/newdiv', 'PagesController@newDiv')->middleware('reception');
-    Route::get('/user', 'PagesController@user')->middleware('reception');
+    Route::get('/showuser', 'PagesController@user')->middleware('reception');
+    Route::get('/adduser', 'PagesController@addUser')->middleware('reception');
 
     /**
      * Admin Control over PagesController 
@@ -35,6 +36,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/employee', 'PagesController@employee')->middleware('employee');
 
     Route::resource('projects', 'ProjectsController');
+    Route::resource('user', 'UserController');
 });
 Auth::routes([
     'register' => false

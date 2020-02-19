@@ -38,7 +38,7 @@
                             class="hide-menu">Dashboard </span></a>
                     <ul aria-expanded="false" class="collapse">
                         <li><a href="/projects">Projects</a></li>
-                        <li><a href="/user">Add User</a></li>
+                        <li><a href="/showuser">Add User</a></li>
                         <li><a href="index3.html">Dashboard 3</a></li>
                         <li><a href="index4.html">Dashboard 4</a></li>
                         <li><a href="index5.html">Dashboard 5</a></li>

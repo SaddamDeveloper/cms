@@ -16,6 +16,8 @@ class AddRolesAndStatusToUsersTable extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->integer('role');
             $table->integer('status_id')->nullable();
+            $table->index('role')->change();
+            $table->foreign('role')->references('id')->on('role')->onDelete('cascade')->change();
         });
     }
 

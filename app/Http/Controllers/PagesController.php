@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Project;
+use App\User;
 class PagesController extends Controller
 {
     /**
@@ -27,8 +28,12 @@ class PagesController extends Controller
     }
     
     public function user(){
-        // $projects = Project::orderBy('created_at', 'desc')->paginate(10);
-        return view('pages.user');
+        $users = User::orderBy('created_at', 'desc')->paginate(10);
+        return view('pages.showuser')->with('users', $users);
+    }
+
+    public function addUser(){
+        return view('pages.adduser');
     }
 
     /**
