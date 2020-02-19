@@ -11,12 +11,15 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>ProjectID</th>
                                 <th>Project Name</th>
                                 <th>Amount</th>
                                 <th>Delivery date</th>
                                 <th>Payment Method</th>
-                                <th>Client Type</th>
+                                <th>Client Name</th>
+                                <th>Contact No</th>
+                                <th>Alt Contact No</th>
+                                <th>Email</th>
+                                <th>Address</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -26,15 +29,20 @@
                                 @foreach ($projects as $project)
                                     <tr>
                                     <td>{{ $count }}</td>
-                                        <td>{{$project->projectid}}</td>
-                                        <td>{{$project->projectname}}</td>
-                                        <td>{{number_format($project->amount, 2)}}</td>
-                                        <td>{{$project->deliverydate}}</td>
-                                        <td>{{$project->paymentmethod}}</td>
-                                        <td>{{$project->clienttype}}</td>
+                                        <td>{{$project['projects'][0]->projectname}}</td>
+                                        <td>{{number_format($project['projects'][0]->amount, 2)}}</td>
+                                        <td>{{$project['projects'][0]->deliverydate}}</td>
+                                        <td>{{$project['projects'][0]->paymentmethod == 1 ? 'Cash' : 'Cheque' }}</td>
+                                        <td>{{$project->clientName}}</td>
+                                        <td>{{$project->contactNo}}</td>
+                                        <td>{{$project->altContactNo}}</td>
+                                        <td>{{$project->address}}</td>
+                                        <td>{{$project->email}}</td>
                                         <td>
-                                            {{Form::submit('Edit', ['class'   =>  'btn btn-success' ])}}
-                                            {{Form::submit('Delete', ['class'   =>  'btn btn-danger' ])}}
+                                            <div class="btn-group">
+                                                <a href="/projects/{{$project->id}}/edit" class="btn btn-warning">Edit</a>
+                                                {{Form::submit('Delete', ['class'   =>  'btn btn-danger' ])}}
+                                            </div>
                                         </td>
                                     </tr>
                                 <?php $count++ ?>

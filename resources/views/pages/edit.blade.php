@@ -12,10 +12,10 @@
     <div class="col-lg-12">
         <div class="card card-outline-info">
             <div class="card-header">
-                <h4 class="m-b-0 text-white">Create Project</h4>
+                <h4 class="m-b-0 text-white">Edit Project</h4>
             </div>
             <div class="card-body">
-                {!! Form::open(['action' => 'ProjectsController@store', 'method'    =>  'POST']) !!}
+                {!! Form::open(['action' => ['ProjectsController@update', $projects->id], 'method'    =>  'POST']) !!}
                     <div class="form-body">
                         <h3 class="box-title">Project Info</h3>
                         <hr class="m-t-0 m-b-40">
@@ -24,7 +24,7 @@
                                     <div class="form-group row">
                                         <div class="col-md-9">
                                             {{Form::label('title', 'Project name')}}
-                                            {{ Form::text('title', '', ['class' =>   'form-control'])}}
+                                            {{ Form::text('title', $projects['projects'][0]->projectname, ['class' =>   'form-control'])}}
                                             <small class="form-control-feedback"> This is inline help </small>
                                         </div>
                                     </div>
@@ -32,7 +32,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group row">
                                         <div class="col-md-9">
-                                            {{ Form::date('deliverydate', \Carbon\Carbon::now(), ['class' =>   'form-control'])}}
+                                            {{ Form::date('deliverydate', $projects['projects'][0]->deliverydate, ['class' =>   'form-control'])}}
                                         </div>
                                     </div>
                                 </div>
@@ -42,7 +42,7 @@
                                     <div class="form-group row">
                                         <div class="col-md-9">
                                             {{Form::label('amount', 'Amount')}}
-                                            {{ Form::text('amount', '', ['class' =>   'form-control'])}}
+                                            {{ Form::text('amount', $projects['projects'][0]->amount, ['class' =>   'form-control'])}}
                                             <small class="form-control-feedback"> This is inline help </small> </div>
                                         </div>
                                 </div>
@@ -66,19 +66,19 @@
                                     <div class="form-group row">
                                             <div style="display:none;" class="individual">
                                                 <div class="form-group">
-                                                    {{ Form::text('clientName', '', ['class' =>   'form-control', 'id' => 'cname', 'placeholder' => 'Client Name'])}}
+                                                    {{ Form::text('clientName', $projects->clientName, ['class' =>   'form-control', 'id' => 'cname', 'placeholder' => 'Client Name'])}}
                                                 </div>
                                                 <div class="form-group">
-                                                    {{ Form::text('contactNo', '', ['class' =>   'form-control', 'id' => 'contactNo', 'placeholder' => 'Contact No'])}}
+                                                    {{ Form::text('contactNo', $projects->contactNo, ['class' =>   'form-control', 'id' => 'contactNo', 'placeholder' => 'Contact No'])}}
                                                 </div>
                                                 <div class="form-group">
-                                                    {{ Form::text('altContactNo', '', ['class' =>   'form-control', 'id' => 'altContactNo', 'placeholder' => 'Alternate Contact No'])}}
+                                                    {{ Form::text('altContactNo', $projects->altContactNo, ['class' =>   'form-control', 'id' => 'altContactNo', 'placeholder' => 'Alternate Contact No'])}}
                                                 </div>
                                                 <div class="form-group">
-                                                    {{ Form::email('email', '', ['class' =>   'form-control', 'id' => 'email', 'placeholder' => 'Email'])}}
+                                                    {{ Form::email('email', $projects->email, ['class' =>   'form-control', 'id' => 'email', 'placeholder' => 'Email'])}}
                                                 </div>
                                                 <div class="form-group">
-                                                    <textarea name="address" id="address" class="form-control" placeholder="Address" cols="15" rows="10"></textarea>
+                                                <textarea name="address" id="address" class="form-control" placeholder="Address" cols="15" rows="10">{{$projects->address}}</textarea>
                                                 </div>
                                             </div>
                                     </div>
@@ -139,6 +139,7 @@
                             </div>
                             <hr>
                             <div class="col-md-offset-3 col-md-9 pull-right">
+                                {{Form::hidden('_method', 'PUT')}}
                                 {{Form::submit('Submit', ['class'   =>  'btn btn-success' ])}}
                                 <a href="/" class="btn btn-inverse">Cancel</a>
                             </div>

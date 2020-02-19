@@ -15,12 +15,11 @@
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/', 'PagesController@index');
     Route::get('/create', 'PagesController@create');
-    Route::get('/show', 'PagesController@show');
+    Route::get('/projects', 'PagesController@show');
     Route::get('/profile', 'PagesController@profile');
     Route::get('/pages/newdiv', 'PagesController@newDiv');
 
     Route::resource('projects', 'ProjectsController');
-
 
     Route::get('/', 'DashboardController@index');
 });

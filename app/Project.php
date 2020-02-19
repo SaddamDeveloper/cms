@@ -11,7 +11,15 @@ class Project extends Model
     public $primaryKey = 'id';
     public $timestamps = true;
 
-    public function ProjectID(){
+    public function client(){
+        return $this->belongsTo('App\ClientType');
+    }
+
+    public function cash(){
+        return $this->hasMany('App\Cash');
+    }
+
+/*    public function ProjectID(){
         while (true) {
             $sql = DB::select('select max(projectid) FROM projects as max_val');
             return $sql;
@@ -34,5 +42,5 @@ class Project extends Model
             }
             return $res;
         }
-    }
+    }*/
 }
